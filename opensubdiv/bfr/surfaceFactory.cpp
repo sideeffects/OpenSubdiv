@@ -357,7 +357,8 @@ namespace {
     //
     KeyIntType
     packTopologyKey(FaceSurface const & surface,
-                    IrregularPatchBuilder::Options options) {
+                    IrregularPatchBuilder::Options options,
+		    int numCVs) {
 
         //
         //  Keep the bitfield struct local in scope unless needed elsewhere:
@@ -513,6 +514,7 @@ namespace {
             SurfaceHeader() { std::memset(this, 0, sizeof(*this)); }
 
             short faceSize;
+	    short numCVs;
             uchar subdScheme;
             uchar subdCreasing;
             uchar subdTriSmooth;
@@ -590,6 +592,7 @@ namespace {
 
         SurfaceHeader sHeader;
         sHeader.faceSize      = (short) faceSize;
+	sHeader.numCVs	      = (short) numCVs;
         sHeader.subdScheme    = (uchar) surface.GetSdcScheme();
         sHeader.subdCreasing  = (uchar) subdOptions.GetCreasingMethod();
         sHeader.subdTriSmooth = (uchar) subdOptions.GetTriangleSubdivision();
@@ -824,7 +827,8 @@ SurfaceFactory::assignIrregularSurface(SurfaceType * surfacePtr,
         //  the cache intentionally releases the one built here.
         //
         SurfaceFactoryCache::KeyType key =
-                hashTopologyKey(descriptor, buildOptions);
+                hashTopologyKey(descriptor, buildOptions,
+		builder.GetNumControlVertices());
 
         patch = _topologyCache->Find(key);
         if (patch == 0) {
