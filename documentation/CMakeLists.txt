@@ -143,6 +143,8 @@ if (DOCUTILS_FOUND AND Python_Interpreter_FOUND)
                 "${outfile}"
             DESTINATION
                 "${CMAKE_DOCDIR_BASE}"
+            PERMISSIONS
+                OWNER_READ GROUP_READ WORLD_READ
         )
 
     endforeach()
@@ -232,6 +234,8 @@ if (DOCUTILS_FOUND AND Python_Interpreter_FOUND)
                 "${htmlfile}"
             DESTINATION
                 "${CMAKE_DOCDIR_BASE}"
+            PERMISSIONS
+                OWNER_READ GROUP_READ WORLD_READ
         )
 
     endforeach()
