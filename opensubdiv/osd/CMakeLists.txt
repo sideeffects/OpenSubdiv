@@ -417,22 +417,14 @@ install(
     FILES
         ${PUBLIC_HEADER_FILES}
     DESTINATION
-        "${CMAKE_INCDIR_BASE}/osd"
-    PERMISSIONS
-        OWNER_READ
-        GROUP_READ
-        WORLD_READ )
+        "${CMAKE_INCDIR_BASE}/osd" )
 
 if (ANDROID)
     install(
         FILES
             Android.mk
         DESTINATION
-            "${LIBRARY_OUTPUT_PATH_ROOT}"
-        PERMISSIONS
-            OWNER_READ
-            GROUP_READ
-            WORLD_READ )
+            "${LIBRARY_OUTPUT_PATH_ROOT}" )
 endif()
 
 #-------------------------------------------------------------------------------

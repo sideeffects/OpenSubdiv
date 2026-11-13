@@ -32,10 +32,6 @@ install(
     FILES
         ${PUBLIC_HEADER_FILES}
     DESTINATION 
-        "${CMAKE_INCDIR_BASE}/hbr"
-    PERMISSIONS
-        OWNER_READ
-        GROUP_READ
-        WORLD_READ )
+        "${CMAKE_INCDIR_BASE}/hbr" )
 
 #-------------------------------------------------------------------------------

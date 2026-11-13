@@ -82,10 +82,6 @@ install(
     FILES
         ${PUBLIC_HEADER_FILES}
     DESTINATION
-        "${CMAKE_INCDIR_BASE}/far"
-    PERMISSIONS
-        OWNER_READ
-        GROUP_READ
-        WORLD_READ )
+        "${CMAKE_INCDIR_BASE}/far" )
 
 #-------------------------------------------------------------------------------

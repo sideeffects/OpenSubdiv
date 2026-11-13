@@ -98,11 +98,7 @@ if (NOT NO_LIB)
 
     install( FILES version.h
         DESTINATION
-            "${CMAKE_INCDIR_BASE}"
-        PERMISSIONS
-            OWNER_READ
-            GROUP_READ
-            WORLD_READ )
+            "${CMAKE_INCDIR_BASE}" )
 
     #---------------------------------------------------------------------------
 
