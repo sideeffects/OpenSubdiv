@@ -545,6 +545,19 @@ if(OPENCL_FOUND)
     add_definitions(
         -DOPENSUBDIV_HAS_OPENCL
     )
+
+    # SideFX.
+    if(APPLE)
+        add_definitions(
+            -DCL_TARGET_OPENCL_VERSION=120
+        )
+    else()
+        add_definitions(
+            -DCL_TARGET_OPENCL_VERSION=300
+            -DCL_USE_DEPRECATED_OPENCL_1_2_APIS
+        )
+    endif()
+
     if(CLEW_FOUND)
         add_definitions(
             -DOPENSUBDIV_HAS_CLEW
