@@ -78,7 +78,14 @@ if (NOT NO_LIB)
         )
     endif()
 
+    #---------------------------------------------------------------------------
 
+    # SideFX.
+    # Manually set Windows C-runtime option from command-line argument.
+    # This must be set before the library subdirectories are added.
+    if ( WIN32 )
+       add_compile_options(/${WIN_CRT_OPT})
+    endif ()
 
     #---------------------------------------------------------------------------
 
@@ -102,6 +109,19 @@ if (NOT NO_LIB)
 
     #---------------------------------------------------------------------------
 
+    # SideFX.
+    if ( WIN32 )
+       if (${WIN_CRT_OPT} STREQUAL "MDd")
+           set(lib_suffix "_md_d")
+       elseif (${WIN_CRT_OPT} STREQUAL "MD" )
+           set(lib_suffix "_md")
+       elseif (${WIN_CRT_OPT} STREQUAL "MTd" )
+           set(lib_suffix "_d")
+       else ()
+           set(lib_suffix "")
+       endif ()
+    endif ()
+
     # Build static libs ------------------------------------
     add_library(osd_static_cpu
         STATIC
@@ -113,9 +133,17 @@ if (NOT NO_LIB)
         $<TARGET_OBJECTS:osd_cpu_obj>
     )
 
+    # SideFX.
+    if ( WIN32 )
+       set(lib_prefix "lib")
+    else ()
+       set(lib_prefix "")
+    endif ()
+
+
     set_target_properties(osd_static_cpu
         PROPERTIES
-            OUTPUT_NAME osdCPU
+            OUTPUT_NAME ${lib_prefix}osdCPU${lib_suffix}
             EXPORT_NAME osdCPU_static
             CLEAN_DIRECT_OUTPUT 1
             FOLDER "opensubdiv"
@@ -144,7 +172,7 @@ if (NOT NO_LIB)
         )
         set_target_properties(osd_static_gpu
             PROPERTIES
-                OUTPUT_NAME osdGPU
+                OUTPUT_NAME ${lib_prefix}osdGPU${lib_suffix}
                 EXPORT_NAME osdGPU_static
                 CLEAN_DIRECT_OUTPUT 1)
 
