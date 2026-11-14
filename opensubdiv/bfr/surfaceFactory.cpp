@@ -357,8 +357,7 @@ namespace {
     //
     KeyIntType
     packTopologyKey(FaceSurface const & surface,
-                    IrregularPatchBuilder::Options options,
-		    int numCVs) {
+                    IrregularPatchBuilder::Options options) {
 
         //
         //  Keep the bitfield struct local in scope unless needed elsewhere:
@@ -501,7 +500,8 @@ namespace {
     //
     KeyIntType
     hashTopologyKey(FaceSurface const & surface,
-                    IrregularPatchBuilder::Options options) {
+                    IrregularPatchBuilder::Options options,
+		    int numCVs) {
 
         //
         //  Structs for "headers" for the entire surface and each corner,
