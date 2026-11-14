@@ -58,7 +58,9 @@ set(PUBLIC_HEADER_FILES
 
 set(DOXY_HEADER_FILES ${PUBLIC_HEADER_FILES})
 
-include_directories("${CMAKE_CURRENT_BINARY_DIR}")
+# SideFX.
+# Prevent climits.h header from picking up bfr/limits.h.
+#include_directories("${CMAKE_CURRENT_BINARY_DIR}")
 
 if (NOT NO_LIB)
 
